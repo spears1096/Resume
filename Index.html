@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -740,7 +739,7 @@
             padding: 20px;
         }
 
-        /* PRINT FIXES */
+        /* Print Styles for A4 */
         @media print {
             @page {
                 size: A4;
@@ -751,8 +750,7 @@
                 background: white;
                 padding: 0;
                 padding-top: 0;
-                font-size: 10pt;
-                line-height: 1.4;
+                font-size: 11pt;
             }
             
             .navbar {
@@ -761,7 +759,7 @@
 
             .resume-container {
                 width: 210mm;
-                height: auto;
+                height: 297mm;
                 max-width: 100%;
                 box-shadow: none;
                 margin: 0;
@@ -770,16 +768,26 @@
             }
             
             .header {
-                padding: 15px 25px;
-                flex-direction: row;
+                padding: 20px 30px;
             }
             
             .photo-container {
-                width: 110px;
-                height: 145px;
+                width: 120px;
+                height: 160px;
                 margin-right: 20px;
             }
             
+            .main-content {
+                padding: 20px 30px;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+            
+            .download-btn {
+                display: none;
+            }
+            
+            /* Adjust font sizes for print */
             .name-title h1 {
                 font-size: 24pt;
             }
@@ -788,127 +796,37 @@
                 font-size: 16pt;
             }
             
-            .contact-info {
-                gap: 10px;
-                font-size: 9pt;
-            }
-            
-            .main-content {
-                padding: 20px 25px;
-                grid-template-columns: 1fr 1fr;
-                gap: 20px;
-            }
-            
             .section-title {
                 font-size: 14pt;
             }
             
-            /* Force all accordions to be expanded */
-            .accordion .accordion-content {
-                max-height: none !important;
-                display: block !important;
-                overflow: visible !important;
-            }
-            
-            .accordion-header .icon {
-                display: none;
-            }
-            
-            /* Hide interactive elements */
-            .accordion-controls, .print-btn, .download-btn {
-                display: none !important;
-            }
-            
-            /* Remove hover effects */
-            .timeline-item:hover,
-            .skill-item:hover,
-            .experience-details p:hover,
-            .key-result li:hover,
-            .detail-item:hover {
-                transform: none !important;
-                background: transparent !important;
-                box-shadow: none !important;
-                padding: initial !important;
-                border-radius: 0 !important;
-                margin-left: 0 !important;
-            }
-            
-            .skill-item:hover {
-                color: inherit !important;
-            }
-            
-            /* Adjust font sizes */
             body, .contact-item, .details-list li, .skill-item, 
-            .timeline-item, .accordion-header h3, .key-result li {
-                font-size: 9pt;
-            }
-            
-            .accordion-header .date, .accordion-header .company {
-                font-size: 9pt;
+            .timeline-item, .experience-title, .key-result li {
+                font-size: 10pt;
             }
             
             /* Prevent page breaks inside key elements */
-            .section, .accordion, .timeline-item {
+            .section, .experience, .timeline-item {
                 page-break-inside: avoid;
             }
             
-            /* Page break optimization */
-            .page-break-before {
-                page-break-before: always;
+            /* Adjust spacing */
+            .section {
+                margin-bottom: 20px;
             }
             
-            .page-break-after {
-                page-break-after: always;
-            }
-            
-            .avoid-break {
-                page-break-inside: avoid;
-            }
-            
-            /* Timeline adjustments */
-            .timeline-grid::before {
-                display: none;
-            }
-            
-            .timeline-item::after {
-                display: none;
+            .experience {
+                padding: 15px;
             }
             
             .timeline-item {
-                padding: 8px;
-                margin-bottom: 10px;
+                padding: 12px;
             }
             
-            /* Reduce spacing */
-            .section {
-                margin-bottom: 15px;
-            }
-            
-            .key-result ul {
-                margin-left: 15px;
-            }
-            
-            .key-result li {
-                margin-bottom: 5px;
-            }
-            
-            /* Personal details adjustments */
-            .personal-details {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 8px;
-            }
-            
-            .detail-item {
-                margin-bottom: 5px;
-            }
-            
-            .detail-label {
-                min-width: 120px;
-            }
-            
-            /* Ensure all content is visible */
-            .accordion-content-inner {
-                padding: 0 15px 15px;
+            /* Ensure all accordions are expanded in print */
+            .accordion-content {
+                max-height: none !important;
+                display: block !important;
             }
         }
 
@@ -970,10 +888,6 @@
             }
         }
     </style>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
 </head>
 
 <body>
@@ -986,7 +900,7 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="print-btn" onclick="printResume()">
+        <button class="print-btn" onclick="window.print()">
             <i class="fas fa-print"></i> Print Resume
         </button>
     </nav>
@@ -997,13 +911,12 @@
             <div class="photo-container">
                 <div class="photo-placeholder">
                     <div class="photo-text">Passport Photo</div>
-                    <img src="Photo.jpg" alt="My Photo">
                 </div>
             </div>
             <div class="header-content">
                 <div class="name-title">
                     <h1>MILTON BABU.G</h1>
-                    <h2>Manager P & M </h2>
+                    <h2>Deputy Manager</h2>
                 </div>
                 <p>Goal-oriented professional targeting senior-level assignments in Manufacturing, Operations, Maintenance with reputable organizations in Automobile industry, preferably in GCC & India.</p>
                 <div class="contact-info">
@@ -1017,7 +930,7 @@
                     </div>
                     <div class="contact-item whatsapp-item">
                         <i class="fab fa-whatsapp"></i>
-                        <a href="https://wa.me/916374003209" target="_blank">6374003209</a>
+                        <a href="https://wa.me/916305678339" target="_blank">6305678339</a>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
@@ -1218,81 +1131,57 @@
             <div class="right-column">
                 <!-- Career Timeline -->
                 <section class="section">
-                    <section class="section">
-    <h2 class="section-title">Career Timeline</h2>
-    <div class="timeline-container">
-        <div class="timeline-grid">
-
-            <div class="timeline-item" onclick="scrollToExperience('exp-aps')">
-                <div class="timeline-header">
-                    <div class="timeline-logo">APS</div>
-                    <div>
-                        <h6>Jul 2025 – Present</h6>
-                        <p>APS Mining & Infrastructure</p>
-                        <div class="position">Manager - P&M</div>
+                    <h2 class="section-title">Career Timeline</h2>
+                    <div class="timeline-container">
+                        <div class="timeline-grid">
+                            <div class="timeline-item" onclick="scrollToExperience('exp-APS')">
+                                <h6>27<sup>th</sup> July 2025 to <sup></sup> Till Date</h6>
+                                <p>APS MINING & INFRASTRUCTURE INDIA PVT LTD, Hyderabad</p>
+                                <div class="position">P & M Manager</div>
+                            </div>
+                            <div class="timeline-item" onclick="scrollToExperience('exp-nyk')">
+                                <h6>10<sup>th</sup> Apr 2017 to 31<sup>st</sup> Dec 2023</h6>
+                                <p>NYK AUTO LOGISTICS INDIA PVT LTD, Chennai</p>
+                                <div class="position">Deputy Manager</div>
+                            </div>
+                            <div class="timeline-item" onclick="scrollToExperience('exp-khaleeg')">
+                                <h6>27<sup>th</sup> Sep 2015 to 02<sup>nd</sup> Dec 2016</h6>
+                                <p>Khaleeg Factory for Natura-l Stone Co., Saudi Arabia</p>
+                                <div class="position">Maintenance Engineer</div>
+                            </div>
+                            <div class="timeline-item" onclick="scrollToExperience('exp-atr')">
+                                <h6>12<sup>th</sup> Oct 2012 to 07<sup>th</sup> Jul 2015</h6>
+                                <p>ATR Cars Pvt. Ltd., Rajahmundry</p>
+                                <div class="position">Service Manager</div>
+                            </div>
+                            <div class="timeline-item" onclick="scrollToExperience('exp-voith')">
+                                <h6>20<sup>th</sup> Dec 2010 to 27<sup>th</sup> Jun 2012</h6>
+                                <p>Voith Turbo India Pvt. Ltd., Nacharam</p>
+                                <div class="position">Engineer-Service</div>
+                            </div>
+                            <div class="timeline-item" onclick="scrollToExperience('exp-automotive2')">
+                                <h6>08<sup>th</sup> Jan 2010 to 20<sup>th</sup> Nov 2010</h6>
+                                <p>Automotive Manufacturers Pvt Ltd</p>
+                                <div class="position">Service Executive</div>
+                            </div>
+                            <div class="timeline-item" onclick="scrollToExperience('exp-jcbl')">
+                                <h6>22<sup>nd</sup> Jun 2009 to 30<sup>th</sup> Nov 2009</h6>
+                                <p>Cerita Motors -- A JCBL Limited Division </p>
+                                <div class="position">Service Engineer</div>
+                            </div>
+                            <div class="timeline-item" onclick="scrollToExperience('exp-satyam')">
+                                <h6>30<sup>th</sup> Oct 2008 to 22<sup>nd</sup> Jun 2009</h6>
+                                <p>Satyam Computers</p>
+                                <div class="position">Warranty Analyst</div>
+                            </div>
+                            <div class="timeline-item" onclick="scrollToExperience('exp-automotive')">
+                                <h6>23<sup>rd</sup> Jan 2007 to 31<sup>st</sup> Jun 2008</h6>
+                                <p>Automotive Manufacturers Pvt Ltd</p>
+                                <div class="position">Service Executive</div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="timeline-item" onclick="scrollToExperience('exp-nyk')">
-                <div class="timeline-header">
-                    <div class="timeline-logo">NYK</div>
-                    <div>
-                        <h6>Apr 2017 – Dec 2023</h6>
-                        <p>NYK Auto Logistics</p>
-                        <div class="position">Deputy Manager</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item" onclick="scrollToExperience('exp-khaleeg')">
-                <div class="timeline-header">
-                    <div class="timeline-logo">KSA</div>
-                    <div>
-                        <h6>Sep 2015 – Dec 2016</h6>
-                        <p>Khaleeg Factory</p>
-                        <div class="position">Maintenance Engineer</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item" onclick="scrollToExperience('exp-atr')">
-                <div class="timeline-header">
-                    <div class="timeline-logo">VW</div>
-                    <div>
-                        <h6>Oct 2012 – Jul 2015</h6>
-                        <p>ATR Cars</p>
-                        <div class="position">Service Manager</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item" onclick="scrollToExperience('exp-voith')">
-                <div class="timeline-header">
-                    <div class="timeline-logo">VT</div>
-                    <div>
-                        <h6>Dec 2010 – Jun 2012</h6>
-                        <p>Voith Turbo</p>
-                        <div class="position">Engineer</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item" onclick="scrollToExperience('exp-automotive')">
-                <div class="timeline-header">
-                    <div class="timeline-logo">AL</div>
-                    <div>
-                        <h6>2007 – 2010</h6>
-                        <p>Automotive Mfrs</p>
-                        <div class="position">Service Executive</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-                 
+                </section>
 
                 <!-- Organizational Experience -->
                 <section id="experience" class="section">
@@ -1307,36 +1196,45 @@
                     
                     <h2 class="section-title">Professional Experience</h2>
 
-                    <!-- APS Mining Experience -->
-                    <div class="accordion active" id="exp-aps">
+                    <!-- APS Experience -->
+                    <div class="accordion active" id="exp-APS">
                         <div class="accordion-header">
                             <div>
-                                <h3>Manager - Plant & Machinery</h3>
-                                <span class="company">APS Mining & Infrastructure India Private Limited - Hyderabad</span>
+                                <h3>P & M  Manager - Maintenance & Operations</h3>
+                                <span class="company">APS MINING & INFRASTRUCTURE INDIA PVT LTD - Hyderabad</span>
                             </div>
                             <div>
-                                <span class="date">Jul 2025 - Till Date</span>
+                                <span class="date">July 2025 - Till Date</span>
                                 <i class="fas fa-chevron-down icon"></i>
                             </div>
                         </div>
                         <div class="accordion-content">
                             <div class="accordion-content-inner">
-                                <p><strong>Industry:</strong> Mining</p>
-                                <p><strong>Manufacturer:</strong> Komatsu, Kobelco, Bharat Benz,Eicher, Volvo FM 420 etc...</p>
+                                <p><strong>Industry:</strong> Automobile Service & Mining</p>
+                                <p><strong>Manufacturer:</strong> PSP Mining Equipment</p>
 
                                 <div class="key-result">
                                     <h4>Key Responsibilities:</h4>
                                     <ul>
-                                        <li>Streamlined activities to ensure 100% service quality and cost savings</li>
-                                        <li>Schedulded plannig for Periodic Maintenance</li>
-                                        <li>Maintained repair expenses below budget</li>
-                                        <li>Implemented Repair Management System for Plant & Machinery</li>
-                                        <li>Implementation of Inspection Checklist to avoid breakdowns of Machinery & Trucks</li>
-                                        <li>Managed staff planning, recruitment, and training</li>
-                                        <li>Ensured timely MIS reporting and billing</li>
+                                        <li>Equipment Availability & Utilization</li>
+                                        <li>Preventive & Predictive Maintenance (PPM)</li>
+                                        <li>Cost Control & Budget Management</li>
+                                        <li> Safety & Environmental Compliance </li>
+                                        <li>Fleet Lifecycle Management & Capital Planning</li>
+                                        <li>Spare Parts & Inventory Optimization</li>
+                                        <li>Maintenance Team Productivity & Skill Development</li>
+                                        <li>Reliability Engineering & Root Cause Analysis (RCA)</li>
+                                        <li>Vendor & Contractor Management</li>
                                     </ul>
                                 </div>
 
+                                <div class="key-result">
+                                    <h4>Accomplishments:</h4>
+                                    <ul>
+                                        <li></li>
+                                
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1655,27 +1553,16 @@
 
         <!-- Download Section -->
         <div class="download-section">
-            <a href="#" class="download-btn" onclick="printResume()">
+            <a href="#" class="download-btn" onclick="window.print();">
                 <i class="fas fa-download"></i> Download as PDF
             </a>
             <div class="copyright">
-                Milton Babu G - Resume | Last Updated: 12<sup>th</sup>June 2025 @ 12:30 pm
+                Milton Babu G - Resume | Last Updated: May 2025
             </div>
         </div>
     </div>
 
     <script>
-        // Enhanced print functionality
-        function printResume() {
-            // Expand all accordions before printing
-            expandAll();
-            
-            // Wait a moment for DOM updates then print
-            setTimeout(() => {
-                window.print();
-            }, 300);
-        }
-        
         // Accordion functionality
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize first accordion as open
@@ -1688,11 +1575,6 @@
                     const accordion = this.parentElement;
                     accordion.classList.toggle('active');
                 });
-            });
-            
-            // Ensure accordions are expanded before print
-            window.addEventListener('beforeprint', function() {
-                expandAll();
             });
         });
         
@@ -1770,6 +1652,3 @@
 </body>
 
 </html>
-
-
-
